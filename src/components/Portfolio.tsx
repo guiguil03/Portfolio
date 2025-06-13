@@ -18,18 +18,24 @@ const Portfolio: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     
     try {
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
+        body: new URLSearchParams({
+          'form-name': 'contact',
+          'name': formData.get('name') as string,
+          'email': formData.get('email') as string,
+          'message': formData.get('message') as string,
+        }).toString(),
       });
 
       if (response.ok) {
         setSubmitMessage('Message envoyé avec succès ! Je vous répondrai rapidement.');
-        e.currentTarget.reset();
+        form.reset();
       } else {
         setSubmitMessage('Erreur lors de l\'envoi. Veuillez réessayer.');
       }

@@ -8,17 +8,4 @@
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
-
-# Configuration des formulaires Netlify
-[forms]
-  from = "contact"
-  to = "guillaumel1103@gmail.com"
-  subject = "Nouveau message depuis votre portfolio"
-
-# Configuration des notifications
-[[plugins]]
-  package = "netlify-plugin-form-submissions"
-
-  [plugins.inputs]
-    email = "guillaumel1103@gmail.com" 
+  status = 200 
