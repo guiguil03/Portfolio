@@ -10,7 +10,7 @@ import { PortfolioData } from '../types/portfolio';
 import { iconMap } from '../config/icons';
 
 const Portfolio: React.FC = () => {
-  const [data] = useState<PortfolioData>(portfolioData);
+  const [data] = useState<PortfolioData>(portfolioData as PortfolioData);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ const Portfolio: React.FC = () => {
     alert('Message envoyé avec succès !');
   };
 
-  const skills = data.skills.map(skill => {
+  const skills = data.skills.map((skill: any) => {
     const Icon = iconMap[skill.icon as keyof typeof iconMap];
     return {
       ...skill,
@@ -58,7 +58,7 @@ const Portfolio: React.FC = () => {
       <section id="skills" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <SectionTitle>Compétences</SectionTitle>
-          <SkillsGrid skills={skills} />
+          <SkillsGrid skills={skills as any} />
         </div>
       </section>
 
