@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Skill Icons Colors */
+.skill-typescript { color: #3178C6; transition: all 0.3s ease; }
+.skill-typescript:hover { filter: brightness(1.2); transform: scale(1.1); }
+
+.skill-javascript { color: #F7DF1E; transition: all 0.3s ease; }
+.skill-javascript:hover { filter: brightness(1.2); transform: scale(1.1); }
+
+.skill-react { color: #61DAFB; transition: all 0.3s ease; }
+.skill-react:hover { filter: brightness(1.2); transform: scale(1.1); }
+
+.skill-nodejs { color: #339933; transition: all 0.3s ease; }
+.skill-nodejs:hover { filter: brightness(1.2); transform: scale(1.1); }
+
+.skill-tailwind { color: #06B6D4; transition: all 0.3s ease; }
+.skill-tailwind:hover { filter: brightness(1.2); transform: scale(1.1); }
+
+.skill-mongodb { color: #47A248; transition: all 0.3s ease; }
+.skill-mongodb:hover { filter: brightness(1.2); transform: scale(1.1); }
+
+.skill-docker { color: #2496ED; transition: all 0.3s ease; }
+.skill-docker:hover { filter: brightness(1.2); transform: scale(1.1); }
+
+.skill-git { color: #F05032; transition: all 0.3s ease; }
+.skill-git:hover { filter: brightness(1.2); transform: scale(1.1); }
+
+.skill-python { color: #3776AB; transition: all 0.3s ease; }
+.skill-python:hover { filter: brightness(1.2); transform: scale(1.1); }
+
+.skill-aws { color: #FF9900; transition: all 0.3s ease; }
+.skill-aws:hover { filter: brightness(1.2); transform: scale(1.1); }
+
+/* Button Links */
+.no-underline {
+  text-decoration: none !important;
+}
+
+.no-underline:hover {
+  text-decoration: none !important;
+}
+
+.no-underline:visited {
+  text-decoration: none !important;
+}
+
+.no-underline:active {
+  text-decoration: none !important;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+.section-title {
+  @apply text-4xl font-bold mb-8 text-center relative;
+}
+
+.section-title::after {
+  content: "";
+  @apply absolute bottom-0 left-1/2 w-20 h-1 bg-primary transform -translate-x-1/2 rounded-full;
+}
+
+.skill-card {
+  @apply bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300;
+}
+
+.project-card {
+  @apply bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300;
+}
