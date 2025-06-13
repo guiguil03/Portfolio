@@ -47,7 +47,7 @@ const Portfolio: React.FC = () => {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-lg text-gray-600 leading-relaxed">
               Je suis un développeur full-stack passionné par la création d'applications web modernes et performantes.
-              Avec plus de X années d'expérience, j'ai travaillé sur divers projets allant des applications e-commerce
+              Avec 4 années d'expérience, j'ai travaillé sur divers projets allant des applications e-commerce
               aux systèmes de gestion complexes.
             </p>
           </div>
