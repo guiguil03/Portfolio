@@ -11,17 +11,34 @@ import { iconMap } from '../config/icons';
 
 const Portfolio: React.FC = () => {
   const [data] = useState<PortfolioData>(portfolioData as PortfolioData);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
     const formData = new FormData(e.currentTarget);
-    console.log({
-      name: formData.get('name'),
-      email: formData.get('email'),
-      message: formData.get('message'),
-    });
-    e.currentTarget.reset();
-    alert('Message envoyé avec succès !');
+    
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+
+      if (response.ok) {
+        setSubmitMessage('Message envoyé avec succès ! Je vous répondrai rapidement.');
+        e.currentTarget.reset();
+      } else {
+        setSubmitMessage('Erreur lors de l\'envoi. Veuillez réessayer.');
+      }
+    } catch (error) {
+      setSubmitMessage('Erreur lors de l\'envoi. Veuillez réessayer.');
+    }
+    
+    setIsSubmitting(false);
+    setTimeout(() => setSubmitMessage(''), 5000);
   };
 
   const skills = data.skills.map((skill: any) => {
@@ -79,7 +96,27 @@ const Portfolio: React.FC = () => {
               <p className="text-center text-gray-600 mb-8">
                 Intéressé par une collaboration ? N'hésitez pas à me contacter !
               </p>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              
+              {submitMessage && (
+                <div className={`mb-6 p-4 rounded-lg text-center ${
+                  submitMessage.includes('succès') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                }`}>
+                  {submitMessage}
+                </div>
+              )}
+
+              <form 
+                name="contact" 
+                method="POST" 
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                onSubmit={handleSubmit} 
+                className="space-y-6"
+              >
+                {/* Champ caché pour Netlify */}
+                <input type="hidden" name="form-name" value="contact" />
+                <input type="hidden" name="bot-field" />
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -129,11 +166,16 @@ const Portfolio: React.FC = () => {
                 </motion.div>
                 <motion.button
                   type="submit"
-                  className="w-full bg-primary text-white py-3 rounded-lg hover:bg-secondary transition-colors"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={isSubmitting}
+                  className={`w-full py-3 rounded-lg transition-colors ${
+                    isSubmitting 
+                      ? 'bg-gray-400 cursor-not-allowed' 
+                      : 'bg-primary text-white hover:bg-secondary'
+                  }`}
+                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                 >
-                  Envoyer
+                  {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
                 </motion.button>
               </form>
               <div className="mt-8 pt-8 border-t flex justify-center space-x-6">
@@ -152,7 +194,7 @@ const Portfolio: React.FC = () => {
                   <FaLinkedin />
                 </motion.a>
                 <motion.a
-                  href="mailto:email@example.com"
+                  href="mailto:guillaumel1103@gmail.com"
                   className="text-4xl text-gray-600 hover:text-primary transition-colors"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                 >
