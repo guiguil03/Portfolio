@@ -33,6 +33,21 @@
 .skill-aws { color: #FF9900; transition: all 0.3s ease; }
 .skill-aws:hover { filter: brightness(1.2); transform: scale(1.1); }
 
+.skill-react-native { color: #61DAFB; transition: all 0.3s ease; }
+.skill-react-native:hover { filter: brightness(1.2); transform: scale(1.1); }
+
+.skill-nextjs { color: #000000; transition: all 0.3s ease; }
+.skill-nextjs:hover { filter: brightness(1.2) invert(0.2); transform: scale(1.1); }
+
+.skill-linux { color: #FCC624; transition: all 0.3s ease; }
+.skill-linux:hover { filter: brightness(1.2); transform: scale(1.1); }
+
+.skill-postgresql { color: #336791; transition: all 0.3s ease; }
+.skill-postgresql:hover { filter: brightness(1.2); transform: scale(1.1); }
+
+.skill-mysql { color: #4479A1; transition: all 0.3s ease; }
+.skill-mysql:hover { filter: brightness(1.2); transform: scale(1.1); }
+
 /* Button Links */
 .no-underline {
   text-decoration: none !important;

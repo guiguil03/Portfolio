@@ -224,11 +224,11 @@ const Portfolio: React.FC = () => {
                 </p>
                 <div className="text-center">
                   <a 
-                    href="mailto:GUillaumel1103@gmail.com"
+                    href="mailto:Guillaumel1103@gmail.com"
                     className="inline-flex items-center text-primary hover:text-secondary transition-colors text-lg font-medium"
                   >
                     <FaEnvelope className="mr-2" />
-                    GUillaumel1103@gmail.com
+                    Guillaumel1103@gmail.com
                   </a>
                 </div>
               </div>
