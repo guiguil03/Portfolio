@@ -35,7 +35,8 @@
       "description": "Une plateforme permettant de parier entre pote sur le 10éme de chaque course de F1",
       "tech": ["React", "Next.js", "GraphQL", "PostgreSQL", "Tailwind"],
       "image": "./img/F1.png",
-      "github": "https://github.com/ghrdy/realtime-chat-app"
+      "github": "https://github.com/ghrdy/realtime-chat-app",
+      "demo": "https://realtime-chat-app-navy.vercel.app/"
     },
     {
       "title": "Milliers de Coeurs",
