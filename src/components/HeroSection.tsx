@@ -69,7 +69,7 @@ const HeroSection: React.FC = () => {
           transition={{ delay: 0.8 }}
         >
           <motion.a
-            href="https://github.com"
+            href="https://github.com/guiguil03"
             className="text-3xl text-purple-100 hover:text-white transition-colors relative group"
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
@@ -78,7 +78,7 @@ const HeroSection: React.FC = () => {
             <FaGithub className="relative z-10" />
           </motion.a>
           <motion.a
-            href="mailto:email@example.com"
+            href="mailto:guillaumel1103@gmail.com"
             className="text-3xl text-purple-100 hover:text-white transition-colors relative group"
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
