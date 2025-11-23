@@ -1,18 +1,19 @@
-import { 
-  SiTypescript, 
-  SiJavascript, 
-  SiReact, 
-  SiNodedotjs, 
-  SiTailwindcss, 
-  SiMongodb, 
-  SiDocker, 
-  SiGit, 
+import {
+  SiTypescript,
+  SiJavascript,
+  SiReact,
+  SiNodedotjs,
+  SiTailwindcss,
+  SiMongodb,
+  SiDocker,
+  SiGit,
   SiPython,
   SiReactos,
   SiLinux,
   SiPostgresql,
   SiMysql,
-  SiNextdotjs
+  SiNextdotjs,
+  SiPhp
 } from 'react-icons/si';
 import { FaAws } from 'react-icons/fa';
 
@@ -32,4 +33,5 @@ export const iconMap = {
   SiPostgresql,
   SiMysql,
   SiNextdotjs,
+  SiPhp,
 } as const;

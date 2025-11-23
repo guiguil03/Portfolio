@@ -1,39 +1,121 @@
 {
   "skills": [
-    { "name": "TypeScript", "icon": "SiTypescript", "color": "skill-typescript" },
-    { "name": "JavaScript", "icon": "SiJavascript", "color": "skill-javascript" },
-    { "name": "React", "icon": "SiReact", "color": "skill-react" },
-    { "name": "React Native", "icon": "SiReactos", "color": "skill-react-native" },
-    { "name": "Next.js", "icon": "SiNextdotjs", "color": "skill-nextjs" },
-    { "name": "Node.js", "icon": "SiNodedotjs", "color": "skill-nodejs" },
-    { "name": "Tailwind CSS", "icon": "SiTailwindcss", "color": "skill-tailwind" },
-    { "name": "MongoDB", "icon": "SiMongodb", "color": "skill-mongodb" },
-    { "name": "PostgreSQL", "icon": "SiPostgresql", "color": "skill-postgresql" },
-    { "name": "MySQL", "icon": "SiMysql", "color": "skill-mysql" },
-    { "name": "Docker", "icon": "SiDocker", "color": "skill-docker" },
-    { "name": "Linux", "icon": "SiLinux", "color": "skill-linux" },
-    { "name": "Git", "icon": "SiGit", "color": "skill-git" },
-    { "name": "Python", "icon": "SiPython", "color": "skill-python" },
-    { "name": "AWS", "icon": "FaAws", "color": "skill-aws" }
+    {
+      "name": "TypeScript",
+      "icon": "SiTypescript",
+      "color": "skill-typescript"
+    },
+    {
+      "name": "JavaScript",
+      "icon": "SiJavascript",
+      "color": "skill-javascript"
+    },
+    {
+      "name": "React",
+      "icon": "SiReact",
+      "color": "skill-react"
+    },
+    {
+      "name": "React Native",
+      "icon": "SiReactos",
+      "color": "skill-react-native"
+    },
+    {
+      "name": "Next.js",
+      "icon": "SiNextdotjs",
+      "color": "skill-nextjs"
+    },
+    {
+      "name": "Node.js",
+      "icon": "SiNodedotjs",
+      "color": "skill-nodejs"
+    },
+    {
+      "name": "Tailwind CSS",
+      "icon": "SiTailwindcss",
+      "color": "skill-tailwind"
+    },
+    {
+      "name": "MongoDB",
+      "icon": "SiMongodb",
+      "color": "skill-mongodb"
+    },
+    {
+      "name": "PostgreSQL",
+      "icon": "SiPostgresql",
+      "color": "skill-postgresql"
+    },
+    {
+      "name": "MySQL",
+      "icon": "SiMysql",
+      "color": "skill-mysql"
+    },
+    {
+      "name": "Docker",
+      "icon": "SiDocker",
+      "color": "skill-docker"
+    },
+    {
+      "name": "Linux",
+      "icon": "SiLinux",
+      "color": "skill-linux"
+    },
+    {
+      "name": "Git",
+      "icon": "SiGit",
+      "color": "skill-git"
+    },
+    {
+      "name": "PHP",
+      "icon": "SiPhp",
+      "color": "skill-php"
+    },
+    {
+      "name": "Python",
+      "icon": "SiPython",
+      "color": "skill-python"
+    },
+    {
+      "name": "AWS",
+      "icon": "FaAws",
+      "color": "skill-aws"
+    }
   ],
   "projects": [
     {
       "title": "API Micro-Service",
       "description": "Une plateforme e-commerce complète avec panier, paiement et gestion des commandes",
-      "tech": ["React", "Node.js", "MongoDB", "Stripe"],
+      "tech": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Stripe"
+      ],
       "image": "./img/img_test.png",
       "github": "https://github.com/Rkichou/API_MS"
     },
     {
       "title": "Application de Running",
       "description": "Application de running sur la partage de course et la recherche de runner proche de chez soi",
-      "tech": ["TypeScript", "ReactNative", "Firebase", "Tailwind"],
+      "tech": [
+        "TypeScript",
+        "ReactNative",
+        "Firebase",
+        "Tailwind"
+      ],
       "image": "./img/app.png",
-      "github": "https://github.com/guiguil03/Unify-App"},
+      "github": "https://github.com/guiguil03/Unify-App"
+    },
     {
       "title": "Appli F1 P10",
       "description": "Une plateforme permettant de parier entre pote sur le 10éme de chaque course de F1",
-      "tech": ["React", "Next.js", "GraphQL", "PostgreSQL", "Tailwind"],
+      "tech": [
+        "React",
+        "Next.js",
+        "GraphQL",
+        "PostgreSQL",
+        "Tailwind"
+      ],
       "image": "./img/F1.png",
       "github": "https://github.com/guiguil03/P10",
       "demo": "https://realtime-chat-app-navy.vercel.app/"
@@ -41,7 +123,12 @@
     {
       "title": "Milliers de Coeurs",
       "description": "Une plateforme de partage et de soutien pour les personnes dans le besoin",
-      "tech": ["React", "Node.js", "MongoDB", "Tailwind"],
+      "tech": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Tailwind"
+      ],
       "image": "./img/milliers-de-coeur.png",
       "github": "https://github.com/guiguil03/milliers-de-coeurs",
       "demo": "https://milliers-de-coeurs-dev.netlify.app/"

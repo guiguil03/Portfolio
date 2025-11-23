@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaUserGraduate, FaCode, FaLightbulb, FaUsers } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { EMAIL_CONFIG } from '../config/email';
 import portfolioData from '../data/portfolio-data.json';
 import SectionTitle from './SectionTitle';
@@ -83,16 +84,71 @@ const Portfolio: React.FC = () => {
       <HeroSection />
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white">
+      <section id="about" className="py-20 bg-white dark:bg-black">
         <div className="container mx-auto px-6">
           <SectionTitle>À propos</SectionTitle>
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Je suis un développeur full-stack passionné par la création d'applications web modernes et performantes.
-              Avec 4 années d'expérience, j'ai travaillé sur divers projets allant des applications e-commerce
-              aux systèmes de gestion complexes.
-            </p>
-          </div>
+          <BentoGrid className="max-w-4xl mx-auto">
+            <BentoGridItem
+              title="Mon Parcours"
+              description="Actuellement en MBA de Développement Full Stack à MyDigitalSchool Paris, je continue de développer mes compétences en développement web et mobile, et j'ai acquis une solide expérience académique et professionnelle, notamment à l'Université Évry Paris-Saclay."
+              header={
+                <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop"
+                    alt="Coding setup"
+                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              }
+              icon={<FaUserGraduate className="h-4 w-4 text-neutral-500" />}
+              className="md:col-span-2"
+            />
+            <BentoGridItem
+              title="Expertise Technique"
+              description="Je maîtrise un large éventail de technologies : Front-end, Back-end, Mobile. Ce qui me permet de développer des applications web et mobiles robustes et performantes."
+              header={
+                <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop"
+                    alt="Code screen"
+                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              }
+              icon={<FaCode className="h-4 w-4 text-neutral-500" />}
+              className="md:col-span-1"
+            />
+            <BentoGridItem
+              title="Soft Skills"
+              description="Communication, Travail d'équipe, Résolution de problèmes, Adaptabilité."
+              header={
+                <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
+                    alt="Teamwork"
+                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              }
+              icon={<FaUsers className="h-4 w-4 text-neutral-500" />}
+              className="md:col-span-1"
+            />
+            <BentoGridItem
+              title="Ma Vision"
+              description="Je conçois des solutions web et mobiles robustes et performantes, avec une attention particulière portée à l'expérience utilisateur et à la qualité du code. Je suis passionné par le développement web et mobile et je suis toujours à la recherche de nouvelles technologies et de nouvelles opportunités."
+              header={
+                <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=2055&auto=format&fit=crop"
+                    alt="Vision"
+                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              }
+              icon={<FaLightbulb className="h-4 w-4 text-neutral-500" />}
+              className="md:col-span-2"
+            />
+          </BentoGrid>
         </div>
       </section>
 
@@ -123,14 +179,13 @@ const Portfolio: React.FC = () => {
               </p>
 
               {submitMessage && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className={`mb-6 p-4 rounded-lg text-center ${
-                    submitMessage.includes('✅') 
-                      ? 'bg-green-100 text-green-700 border border-green-200' 
-                      : 'bg-red-100 text-red-700 border border-red-200'
-                  }`}
+                  className={`mb-6 p-4 rounded-lg text-center ${submitMessage.includes('✅')
+                    ? 'bg-green-100 text-green-700 border border-green-200'
+                    : 'bg-red-100 text-red-700 border border-red-200'
+                    }`}
                 >
                   {submitMessage}
                 </motion.div>
@@ -196,11 +251,10 @@ const Portfolio: React.FC = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full py-3 rounded-lg transition-all duration-200 font-medium ${
-                    isSubmitting 
-                      ? 'bg-gray-400 cursor-not-allowed text-white' 
-                      : 'bg-primary text-white hover:bg-secondary hover:shadow-lg'
-                  }`}
+                  className={`w-full py-3 rounded-lg transition-all duration-200 font-medium ${isSubmitting
+                    ? 'bg-gray-400 cursor-not-allowed text-white'
+                    : 'bg-primary text-white hover:bg-secondary hover:shadow-lg'
+                    }`}
                   whileHover={!isSubmitting ? { scale: 1.02 } : {}}
                   whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >
@@ -217,13 +271,13 @@ const Portfolio: React.FC = () => {
                   )}
                 </motion.button>
               </form>
-              
+
               <div className="mt-8 pt-8 border-t">
                 <p className="text-center text-gray-600 mb-4">
                   Ou contactez-moi directement :
                 </p>
                 <div className="text-center">
-                  <a 
+                  <a
                     href="mailto:Guillaumel1103@gmail.com"
                     className="inline-flex items-center text-primary hover:text-secondary transition-colors text-lg font-medium"
                   >

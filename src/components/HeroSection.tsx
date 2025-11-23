@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaEnvelope } from 'react-icons/fa';
+import { WavyBackground } from '@/components/ui/wavy-background';
+import { TypewriterEffectSmooth } from '@/components/ui/typewriter-effect';
 
 interface TechBadgeProps {
   tech: string;
@@ -10,7 +12,7 @@ interface TechBadgeProps {
 const TechBadge: React.FC<TechBadgeProps> = ({ tech, index }) => (
   <motion.span
     key={tech}
-    className="px-4 py-2 bg-white/10 rounded-full text-sm backdrop-blur-sm border border-purple-500/20"
+    className="px-4 py-2 bg-white/10 rounded-full text-sm backdrop-blur-sm border border-purple-500/20 text-white relative z-20"
     whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -23,27 +25,27 @@ const TechBadge: React.FC<TechBadgeProps> = ({ tech, index }) => (
 const HeroSection: React.FC = () => {
   const technologies = ['React', 'TypeScript', 'Node.js', 'MongoDB'];
 
+  const words = [
+    {
+      text: "Développeur",
+      className: "text-white",
+    },
+    {
+      text: "Full-Stack",
+      className: "text-purple-500 dark:text-purple-500",
+    }
+
+  ];
+
   return (
-    <section className="h-screen flex items-center justify-center bg-[#1a1a2e] relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-purple-900/50 to-secondary/50 backdrop-blur-sm"></div>
-      <div className="relative z-10 text-center px-4 backdrop-blur-sm py-12 rounded-xl bg-white/5">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h1
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-          >
-            Développeur Full-Stack
-          </motion.h1>
-        </motion.div>
+    <div className="relative overflow-hidden">
+      <WavyBackground className="max-w-4xl mx-auto pb-40 flex flex-col items-center justify-center h-full">
+        <div className="mb-6">
+          <TypewriterEffectSmooth words={words} />
+        </div>
 
         <motion.p
-          className="text-xl text-purple-200 mb-8 max-w-2xl mx-auto"
+          className="text-xl text-neutral-300 mb-8 max-w-2xl mx-auto text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
@@ -87,8 +89,8 @@ const HeroSection: React.FC = () => {
             <FaEnvelope className="relative z-10" />
           </motion.a>
         </motion.div>
-      </div>
-    </section>
+      </WavyBackground>
+    </div>
   );
 };
 
