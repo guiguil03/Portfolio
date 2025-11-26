@@ -13,6 +13,7 @@ export const WavyBackground = ({
   blur = 10,
   speed = "fast",
   waveOpacity = 0.5,
+  fullHeight = true,
   ...props
 }: {
   children?: any;
@@ -24,6 +25,7 @@ export const WavyBackground = ({
   blur?: number;
   speed?: "slow" | "fast";
   waveOpacity?: number;
+  fullHeight?: boolean;
   [key: string]: any;
 }) => {
   const noise = createNoise3D();
@@ -112,7 +114,9 @@ export const WavyBackground = ({
   return (
     <div
       className={cn(
-        "h-screen flex flex-col items-center justify-center",
+        fullHeight
+          ? "h-screen flex flex-col items-center justify-center"
+          : "min-h-[60vh] flex flex-col items-center justify-center",
         containerClassName
       )}
     >
