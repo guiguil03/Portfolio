@@ -157,7 +157,7 @@ const Portfolio: React.FC = () => {
                 </div>
                 <p className="text-sm text-neutral-700 dark:text-neutral-200">
                   Rejoindre des projets où je peux intervenir sur tout le cycle produit, de l&apos;idée au
-                  déploiement, et continuer à progresser sur des stacks modernes.
+                  déploiement,et continuer à progresser sur des stacks modernes.
                 </p>
               </div>
             </div>
