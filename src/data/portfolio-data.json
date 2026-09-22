@@ -83,16 +83,39 @@
   ],
   "projects": [
     {
-      "title": "API Micro-Service",
-      "description": "Une plateforme e-commerce complète avec panier, paiement et gestion des commandes",
+      "title": "NotifCar",
+      "description": "Application mobile qui protège les véhicules des dommages non identifiés : un QR code unique apposé sur le pare-brise permet à un tiers de signaler en moins de 3 secondes un incident (rayure, accrochage, stationnement gênant), sans avoir besoin d'installer l'application. Alerte instantanée, géolocalisation précise, rapport horodaté transmissible aux assurances, anonymat total du témoin et chiffrement de bout en bout avec hébergement en France.",
       "tech": [
-        "React",
-        "Node.js",
-        "MongoDB",
-        "Stripe"
+        "React Native",
+        "TypeScript",
+        "Expo",
+        "Supabase",
+        "Next.js"
       ],
-      "image": "./img/img_test.png",
-      "github": "https://github.com/Rkichou/API_MS"
+      "image": "./img/notifcar-app.webp",
+      "logo": "./img/notifcar.webp",
+      "fit": "contain",
+      "type": "mobile",
+      "github": "",
+      "demo": "https://notifcar.fr",
+      "appStore": "https://apps.apple.com/fr/app/notifcar/id6755294079"
+    },
+    {
+      "title": "Maya Connect",
+      "description": "Plateforme permettant de réaliser des économies à chaque achat du quotidien.",
+      "tech": [
+        "React Native",
+        "TypeScript",
+        "Expo",
+        "Azure",
+        "C#",
+        "Angular"
+      ],
+      "image": "./img/maya-connect-app.webp",
+      "logo": "./img/maya-connect.webp",
+      "type": "mobile",
+      "github": "",
+      "demo": "https://www.maya-connect.fr"
     },
     {
       "title": "Application de Running",
@@ -100,38 +123,29 @@
       "tech": [
         "TypeScript",
         "ReactNative",
-        "Firebase",
+        "Supabase",
         "Tailwind"
       ],
-      "image": "./img/app.png",
+      "image": "./img/app.webp",
       "github": "https://github.com/guiguil03/Unify-App"
     },
+    
     {
-      "title": "Appli F1 P10",
-      "description": "Une plateforme permettant de parier entre pote sur le 10éme de chaque course de F1",
+      "title": "SchoolManager",
+      "description": "Tableau de bord d'administration scolaire : centralise la gestion des opérations et des données d'un établissement (comptes, sécurité, thème par établissement), avec suivi des erreurs, bannière hors-ligne et changement de mot de passe forcé pour les comptes sensibles.",
       "tech": [
-        "React",
         "Next.js",
-        "GraphQL",
+        "Tailwind",
         "PostgreSQL",
-        "Tailwind"
+        "TypeScript",
+        "Railway"
+        
       ],
-      "image": "./img/F1.png",
-      "github": "https://github.com/guiguil03/P10",
-      "demo": "https://realtime-chat-app-navy.vercel.app/"
-    },
-    {
-      "title": "Milliers de Coeurs",
-      "description": "Une plateforme de partage et de soutien pour les personnes dans le besoin",
-      "tech": [
-        "React",
-        "Node.js",
-        "MongoDB",
-        "Tailwind"
-      ],
-      "image": "./img/milliers-de-coeur.png",
-      "github": "https://github.com/guiguil03/milliers-de-coeurs",
-      "demo": "https://milliers-de-coeurs-dev.netlify.app/"
+      "image": "./img/schoolmanager.webp",
+      "fit": "contain",
+      "type": "web",
+      "github": "",
+      "demo": "https://www.schoolmanager-dashboard.com/login"
     }
   ]
 }
