@@ -36,6 +36,9 @@
 .skill-react-native { color: #61DAFB; transition: all 0.3s ease; }
 .skill-react-native:hover { filter: brightness(1.2); transform: scale(1.1); }
 
+.skill-flutter { color: #02569B; transition: all 0.3s ease; }
+.skill-flutter:hover { filter: brightness(1.2); transform: scale(1.1); }
+
 .skill-nextjs { color: #000000; transition: all 0.3s ease; }
 .skill-nextjs:hover { filter: brightness(1.2) invert(0.2); transform: scale(1.1); }
 

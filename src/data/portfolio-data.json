@@ -21,6 +21,11 @@
       "color": "skill-react-native"
     },
     {
+      "name": "Flutter",
+      "icon": "SiFlutter",
+      "color": "skill-flutter"
+    },
+    {
       "name": "Next.js",
       "icon": "SiNextdotjs",
       "color": "skill-nextjs"

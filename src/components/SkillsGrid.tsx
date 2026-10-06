@@ -19,6 +19,7 @@ const SkillsGrid: React.FC<SkillsGridProps> = ({ skills }) => {
       case 'React':
       case 'Next.js':
       case 'React Native':
+      case 'Flutter':
       case 'Tailwind CSS':
         return 'frontend';
       case 'Node.js':
