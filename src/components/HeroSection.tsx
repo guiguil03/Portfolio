@@ -41,7 +41,9 @@ const HeroSection: React.FC = () => {
     <div className="relative overflow-hidden">
       <WavyBackground className="max-w-4xl mx-auto pb-40 flex flex-col items-center justify-center h-full">
         <div className="mb-6">
-          <TypewriterEffectSmooth words={words} />
+          <h1 className="contents">
+            <TypewriterEffectSmooth words={words} />
+          </h1>
         </div>
 
         <motion.p

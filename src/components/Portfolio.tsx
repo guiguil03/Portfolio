@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaUserGraduate, FaCode, FaLightbulb, FaUsers } from 'react-icons/fa';
-import emailjs from '@emailjs/browser';
+import { FaGithub, FaLinkedin, FaEnvelope, FaBriefcase, FaCode, FaLightbulb, FaUsers } from 'react-icons/fa';
 // import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { EMAIL_CONFIG } from '../config/email';
 import portfolioData from '../data/portfolio-data.json';
@@ -37,6 +36,9 @@ const Portfolio: React.FC = () => {
     setSubmitMessage('');
 
     try {
+      // Chargé à la demande : évite d'alourdir le bundle initial pour une action rare
+      const { default: emailjs } = await import('@emailjs/browser');
+
       // Paramètres pour EmailJS
       const templateParams = {
         from_name: formData.name,
@@ -98,10 +100,10 @@ const Portfolio: React.FC = () => {
                 <span className="font-semibold"> JavaScript / TypeScript, React / Next.js et Node.js</span>.
               </p>
               <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
-                Actuellement en <span className="font-semibold">MBA Développement Full‑Stack à MyDigitalSchool Paris</span>,
-                je travaille sur des projets réels (applications web, mobile, APIs, backends) pour consolider mes
-                compétences techniques et ma compréhension des besoins métiers, après un cursus à l&apos;Université
-                d&apos;Évry Paris‑Saclay.
+                Titulaire d&apos;un <span className="font-semibold">Master en Développement Full‑Stack</span>, je
+                travaille aujourd&apos;hui en tant qu&apos;<span className="font-semibold">Ingénieur SI / Développement
+                à l&apos;Université d&apos;Évry Paris‑Saclay</span>, où j&apos;interviens sur des projets internes
+                (applications web, APIs, systèmes d&apos;information) de la conception au déploiement.
               </p>
               <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
                 Ce qui me motive : concevoir des produits qui ont un impact, avec un code propre, des interfaces
@@ -114,13 +116,13 @@ const Portfolio: React.FC = () => {
             <div className="space-y-4">
               <div className="rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 p-5 shadow-sm">
                 <div className="flex items-center gap-3 mb-2">
-                  <FaUserGraduate className="h-5 w-5 text-purple-500" />
+                  <FaBriefcase className="h-5 w-5 text-purple-500" />
                   <h3 className="text-sm font-semibold uppercase tracking-wide text-neutral-700 dark:text-neutral-200">
                     Profil
                   </h3>
                 </div>
                 <p className="text-sm text-neutral-600 dark:text-neutral-300">
-                  Développeur Full‑Stack · MBA MyDigitalSchool Paris · basé en Île‑de‑France.
+                  Ingénieur SI / Développement · Université d&apos;Évry Paris‑Saclay · Master Développement Full‑Stack.
                 </p>
               </div>
 
@@ -156,8 +158,8 @@ const Portfolio: React.FC = () => {
                   </h3>
                 </div>
                 <p className="text-sm text-neutral-700 dark:text-neutral-200">
-                  Rejoindre des projets où je peux intervenir sur tout le cycle produit, de l&apos;idée au
-                  déploiement,et continuer à progresser sur des stacks modernes.
+                  Continuer à intervenir sur tout le cycle produit, de l&apos;idée au déploiement, tout en montant en
+                  compétences sur des stacks modernes et des projets techniques ambitieux.
                 </p>
               </div>
             </div>
@@ -166,7 +168,7 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-gray-50">
+      <section id="skills" className="py-20 bg-gray-50 dark:bg-neutral-900">
         <div className="container mx-auto px-6">
           <SectionTitle>Compétences</SectionTitle>
           <SkillsGrid skills={skills as any} />
@@ -174,10 +176,13 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-white">
-        <div className="container mx-auto px-6">
+      <section id="projects" className="relative py-20 overflow-hidden bg-white dark:bg-neutral-950">
+        <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-[420px] w-[720px] rounded-full bg-purple-500/10 blur-[120px]" />
+        <div className="container relative mx-auto px-6">
           <SectionTitle>Projets</SectionTitle>
-          <ProjectsGrid projects={projects} />
+          <div className="mt-16">
+            <ProjectsGrid projects={projects} />
+          </div>
         </div>
       </section>
 
