@@ -58,7 +58,14 @@ export default {
   		animation: {
   			gradient: 'gradient 8s linear infinite',
   			float: 'float 3s ease-in-out infinite',
-  			'spin-slow': 'spin 8s linear infinite'
+  			'spin-slow': 'spin 8s linear infinite',
+  			'fade-in': 'fade-in 0.6s ease-out both',
+  			'fade-in-up': 'fade-in-up 0.6s ease-out both',
+  			'fade-in-left': 'fade-in-left 0.6s ease-out both',
+  			'fade-in-right': 'fade-in-right 0.6s ease-out both',
+  			'scale-in': 'scale-in 0.25s ease-out both',
+  			blink: 'blink 0.8s ease-in-out infinite alternate',
+  			typewriter: 'typewriter 2s linear 1s both'
   		},
   		keyframes: {
   			gradient: {
@@ -78,6 +85,34 @@ export default {
   				'50%': {
   					transform: 'translateY(-10px)'
   				}
+  			},
+  			'fade-in': {
+  				from: { opacity: 0 },
+  				to: { opacity: 1 }
+  			},
+  			'fade-in-up': {
+  				from: { opacity: 0, transform: 'translateY(20px)' },
+  				to: { opacity: 1, transform: 'translateY(0)' }
+  			},
+  			'fade-in-left': {
+  				from: { opacity: 0, transform: 'translateX(-20px)' },
+  				to: { opacity: 1, transform: 'translateX(0)' }
+  			},
+  			'fade-in-right': {
+  				from: { opacity: 0, transform: 'translateX(20px)' },
+  				to: { opacity: 1, transform: 'translateX(0)' }
+  			},
+  			'scale-in': {
+  				from: { opacity: 0, transform: 'scale(0.85)' },
+  				to: { opacity: 1, transform: 'scale(1)' }
+  			},
+  			blink: {
+  				'0%, 100%': { opacity: 1 },
+  				'50%': { opacity: 0 }
+  			},
+  			typewriter: {
+  				from: { maxWidth: '0%' },
+  				to: { maxWidth: '100%' }
   			}
   		},
   		borderRadius: {

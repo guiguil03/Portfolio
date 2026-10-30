@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { FaCloud, FaCode, FaLayerGroup, FaServer, FaTools } from 'react-icons/fa';
 import { Skill } from '../types/portfolio';
 import { cn } from '@/lib/utils';
@@ -106,38 +105,33 @@ const SkillsGrid: React.FC<SkillsGridProps> = ({ skills }) => {
       </div>
 
       {/* Grille de compétences */}
-      <motion.div layout className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
-        <AnimatePresence mode="popLayout">
-          {filtered.map((skill) => (
-            <motion.div
-              key={skill.name}
-              layout
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.85 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-              onMouseMove={handleSpotlight}
-              className="group relative"
-              style={{ ['--x' as any]: '50%', ['--y' as any]: '50%' }}
-            >
-              <div className="relative flex flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-neutral-200/70 dark:border-white/10 bg-white/70 dark:bg-neutral-900/60 backdrop-blur-xl p-5 h-32 transition-colors duration-300 hover:border-purple-300/80 dark:hover:border-purple-500/50">
-                <div
-                  className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background: 'radial-gradient(180px circle at var(--x) var(--y), rgba(168,85,247,0.16), transparent 70%)',
-                  }}
-                />
-                <div className={cn('relative z-10 text-4xl transition-transform duration-300 group-hover:scale-110', skill.color)}>
-                  {skill.icon}
-                </div>
-                <h4 className="relative z-10 text-center text-sm font-semibold text-neutral-700 dark:text-neutral-200">
-                  {skill.name}
-                </h4>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
+        {filtered.map((skill, idx) => (
+          <div
+            // La clé inclut le filtre actif : force un remount (et donc le rejeu de
+            // l'animation d'apparition) à chaque changement de filtre, sans framer-motion.
+            key={`${active}-${skill.name}`}
+            onMouseMove={handleSpotlight}
+            className="group relative opacity-0 animate-scale-in"
+            style={{ ['--x' as any]: '50%', ['--y' as any]: '50%', animationDelay: `${idx * 0.03}s` }}
+          >
+            <div className="relative flex flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-neutral-200/70 dark:border-white/10 bg-white/70 dark:bg-neutral-900/60 backdrop-blur-xl p-5 h-32 transition-colors duration-300 hover:border-purple-300/80 dark:hover:border-purple-500/50">
+              <div
+                className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: 'radial-gradient(180px circle at var(--x) var(--y), rgba(168,85,247,0.16), transparent 70%)',
+                }}
+              />
+              <div className={cn('relative z-10 text-4xl transition-transform duration-300 group-hover:scale-110', skill.color)}>
+                {skill.icon}
               </div>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+              <h4 className="relative z-10 text-center text-sm font-semibold text-neutral-700 dark:text-neutral-200">
+                {skill.name}
+              </h4>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
+import { useInView } from '@/hooks/useInView';
 import { FaGithub, FaLinkedin, FaEnvelope, FaBriefcase, FaCode, FaLightbulb, FaUsers } from 'react-icons/fa';
-// import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { EMAIL_CONFIG } from '../config/email';
 import portfolioData from '../data/portfolio-data.json';
 import SectionTitle from './SectionTitle';
@@ -13,6 +13,7 @@ import { PortfolioData } from '../types/portfolio';
 import { iconMap } from '../config/icons';
 
 const Portfolio: React.FC = () => {
+  const [formRef, formInView] = useInView<HTMLFormElement>();
   const [data] = useState<PortfolioData>(portfolioData as PortfolioData);
   const [formData, setFormData] = useState({
     name: '',
@@ -201,24 +202,23 @@ const Portfolio: React.FC = () => {
             </p>
 
             {submitMessage && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`mb-6 p-4 rounded-lg text-center ${submitMessage.includes('✅')
+              <div
+                className={`mb-6 p-4 rounded-lg text-center animate-fade-in-up ${submitMessage.includes('✅')
                   ? 'bg-green-100 text-green-700 border border-green-200'
                   : 'bg-red-100 text-red-700 border border-red-200'
                   }`}
               >
                 {submitMessage}
-              </motion.div>
+              </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                <div
+                  className={cn(
+                    'transition-all duration-500 ease-out',
+                    formInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-5'
+                  )}
                 >
                   <label htmlFor="name" className="block text-neutral-200 mb-2 font-medium">
                     Nom *
@@ -234,11 +234,12 @@ const Portfolio: React.FC = () => {
                     className="w-full px-4 py-2 border border-purple-500/40 bg-black/40 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors disabled:bg-black/40 placeholder:text-neutral-400"
                     placeholder="Votre nom"
                   />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                </div>
+                <div
+                  className={cn(
+                    'transition-all duration-500 ease-out delay-100',
+                    formInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-5'
+                  )}
                 >
                   <label htmlFor="email" className="block text-neutral-200 mb-2 font-medium">
                     Email *
@@ -254,12 +255,13 @@ const Portfolio: React.FC = () => {
                     className="w-full px-4 py-2 border border-purple-500/40 bg-black/40 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors disabled:bg-black/40 placeholder:text-neutral-400"
                     placeholder="votre@email.com"
                   />
-                </motion.div>
+                </div>
               </div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
+                className={cn(
+                  'transition-all duration-500 ease-out delay-150',
+                  formInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                )}
               >
                 <label htmlFor="message" className="block text-neutral-200 mb-2 font-medium">
                   Message *
@@ -275,16 +277,14 @@ const Portfolio: React.FC = () => {
                   className="w-full px-4 py-2 border border-purple-500/40 bg-black/40 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors resize-none disabled:bg-black/40 placeholder:text-neutral-400"
                   placeholder="Décrivez votre projet ou votre demande..."
                 />
-              </motion.div>
-              <motion.button
+              </div>
+              <button
                 type="submit"
                 disabled={isSubmitting}
                 className={`w-full py-3 rounded-xl transition-all duration-200 font-semibold ${isSubmitting
                   ? 'bg-purple-900/60 cursor-not-allowed text-white'
-                  : 'bg-gradient-to-r from-purple-600 to-fuchsia-500 hover:from-purple-700 hover:to-fuchsia-600 shadow-lg shadow-purple-500/40 text-white'
+                  : 'bg-gradient-to-r from-purple-600 to-fuchsia-500 hover:from-purple-700 hover:to-fuchsia-600 shadow-lg shadow-purple-500/40 text-white hover:scale-[1.02] active:scale-[0.98]'
                   }`}
-                whileHover={!isSubmitting ? { scale: 1.02 } : {}}
-                whileTap={!isSubmitting ? { scale: 0.98 } : {}}
               >
                 {isSubmitting ? (
                   <span className="flex items-center justify-center">
@@ -313,7 +313,7 @@ const Portfolio: React.FC = () => {
                 ) : (
                   'Envoyer le message'
                 )}
-              </motion.button>
+              </button>
             </form>
 
             <div className="mt-8 pt-8 border-t border-neutral-800">
@@ -332,27 +332,24 @@ const Portfolio: React.FC = () => {
             </div>
 
             <div className="mt-8 pt-8 border-t border-neutral-800 flex justify-center space-x-6">
-              <motion.a
+              <a
                 href="https://github.com/guiguil03"
-                className="text-4xl text-purple-200 hover:text-white transition-colors"
-                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="text-4xl text-purple-200 hover:text-white transition-[color,transform] duration-200 hover:scale-110 hover:rotate-[5deg]"
               >
                 <FaGithub />
-              </motion.a>
-              <motion.a
+              </a>
+              <a
                 href="https://www.linkedin.com/in/guillaume-lafay-326b01261/"
-                className="text-4xl text-purple-200 hover:text-white transition-colors"
-                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="text-4xl text-purple-200 hover:text-white transition-[color,transform] duration-200 hover:scale-110 hover:rotate-[5deg]"
               >
                 <FaLinkedin />
-              </motion.a>
-              <motion.a
+              </a>
+              <a
                 href="mailto:GUillaumel1103@gmail.com"
-                className="text-4xl text-purple-200 hover:text-white transition-colors"
-                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="text-4xl text-purple-200 hover:text-white transition-[color,transform] duration-200 hover:scale-110 hover:rotate-[5deg]"
               >
                 <FaEnvelope />
-              </motion.a>
+              </a>
             </div>
           </div>
         </WavyBackground>

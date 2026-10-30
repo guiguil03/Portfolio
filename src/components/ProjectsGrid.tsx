@@ -1,5 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
+import { useInView } from '@/hooks/useInView';
 import {
   SiReact,
   SiNodedotjs,
@@ -114,31 +115,29 @@ const TechGroup: React.FC<{ label: string; items: string[] }> = ({ label, items 
   );
 };
 
-const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
-  return (
-    <div className="mx-auto flex max-w-6xl flex-col gap-24 lg:gap-32">
-      {projects.map((project, index) => {
-        const reversed = index % 2 === 1;
-        const { frontend, backend, tools, autres } = groupTech(project.tech);
-        const isMobile = project.type
-          ? project.type === 'mobile'
-          : normalize(project.tech.join('')).includes('reactnative');
-        const host = hostnameOf(project.demo);
+const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
+  const [ref, inView] = useInView<HTMLDivElement>();
+  const reversed = index % 2 === 1;
+  const { frontend, backend, tools, autres } = groupTech(project.tech);
+  const isMobile = project.type
+    ? project.type === 'mobile'
+    : normalize(project.tech.join('')).includes('reactnative');
+  const host = hostnameOf(project.demo);
 
-        return (
-          <div key={project.title} className="relative">
-            {index > 0 && (
-              <div className="absolute -top-12 lg:-top-16 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neutral-200 dark:via-white/10 to-transparent" />
-            )}
+  return (
+    <div ref={ref} className="relative">
+      {index > 0 && (
+        <div className="absolute -top-12 lg:-top-16 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neutral-200 dark:via-white/10 to-transparent" />
+      )}
 
             <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
               {/* Aperçu / mockup */}
-              <motion.div
-                initial={{ opacity: 0, x: reversed ? 40 : -40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                className={`relative lg:col-span-7 ${reversed ? 'lg:order-2' : ''}`}
+              <div
+                className={cn(
+                  'relative lg:col-span-7 transition-all duration-700 ease-out',
+                  reversed ? 'lg:order-2' : '',
+                  inView ? 'opacity-100 translate-x-0' : `opacity-0 ${reversed ? 'translate-x-10' : '-translate-x-10'}`
+                )}
               >
                 <span className="pointer-events-none absolute -top-10 -left-4 select-none text-8xl md:text-9xl font-black text-neutral-900/[0.04] dark:text-white/[0.04] tracking-tighter">
                   {String(index + 1).padStart(2, '0')}
@@ -224,15 +223,15 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
                     )}
                   </div>
                 )}
-              </motion.div>
+              </div>
 
               {/* Détails */}
-              <motion.div
-                initial={{ opacity: 0, x: reversed ? -40 : 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-                className={`lg:col-span-5 ${reversed ? 'lg:order-1' : ''}`}
+              <div
+                className={cn(
+                  'lg:col-span-5 transition-all duration-700 ease-out delay-100',
+                  reversed ? 'lg:order-1' : '',
+                  inView ? 'opacity-100 translate-x-0' : `opacity-0 ${reversed ? '-translate-x-10' : 'translate-x-10'}`
+                )}
               >
                 <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-500 dark:text-purple-400">
                   Projet {String(index + 1).padStart(2, '0')} · {isMobile ? 'Application mobile' : 'Application web'}
@@ -288,11 +287,18 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
                     </a>
                   )}
                 </div>
-              </motion.div>
+              </div>
             </div>
-          </div>
-        );
-      })}
+    </div>
+  );
+};
+
+const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
+  return (
+    <div className="mx-auto flex max-w-6xl flex-col gap-24 lg:gap-32">
+      {projects.map((project, index) => (
+        <ProjectCard key={project.title} project={project} index={index} />
+      ))}
     </div>
   );
 };

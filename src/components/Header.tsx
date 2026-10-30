@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-scroll';
-import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Header: React.FC = () => {
@@ -25,21 +24,16 @@ const Header: React.FC = () => {
     <header className="fixed w-full bg-white/80 backdrop-blur-sm shadow-sm z-50">
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-2xl font-bold text-primary"
-          >
-            Guillaume LAFAY 
-          </motion.div>
+          <div className="text-2xl font-bold text-primary animate-fade-in-left">
+            Guillaume LAFAY
+          </div>
 
           {/* Menu Desktop */}
           <ul className="hidden md:flex space-x-8">
             {menuItems.map((item) => (
-              <motion.li
+              <li
                 key={item.to}
-                whileHover={{ scale: 1.1 }}
-                className="cursor-pointer"
+                className="cursor-pointer transition-transform duration-200 hover:scale-110"
               >
                 <Link
                   to={item.to}
@@ -49,7 +43,7 @@ const Header: React.FC = () => {
                 >
                   {item.title}
                 </Link>
-              </motion.li>
+              </li>
             ))}
           </ul>
 
@@ -64,39 +58,33 @@ const Header: React.FC = () => {
         </div>
 
         {/* Menu Mobile */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden"
-            >
-              <ul className="py-4 space-y-4">
-                {menuItems.map((item) => (
-                  <motion.li
-                    key={item.to}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.2 }}
+        <div
+          className={`md:hidden grid transition-[grid-template-rows] duration-300 ease-in-out ${
+            isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+          }`}
+        >
+          <div
+            className={`overflow-hidden transition-opacity duration-300 ${
+              isOpen ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <ul className="py-4 space-y-4">
+              {menuItems.map((item) => (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
+                    smooth={true}
+                    duration={500}
+                    onClick={closeMenu}
+                    className="block text-gray-600 hover:text-primary transition-colors py-2"
                   >
-                    <Link
-                      to={item.to}
-                      smooth={true}
-                      duration={500}
-                      onClick={closeMenu}
-                      className="block text-gray-600 hover:text-primary transition-colors py-2"
-                    >
-                      {item.title}
-                    </Link>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </nav>
     </header>
   );
