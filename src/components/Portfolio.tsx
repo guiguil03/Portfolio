@@ -88,7 +88,7 @@ const Portfolio: React.FC = () => {
       <HeroSection />
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white dark:bg-black">
+      <section id="about" className="py-20 bg-white dark:bg-black scroll-mt-20">
         <div className="container mx-auto px-6 max-w-5xl">
           <SectionTitle>À propos</SectionTitle>
 
@@ -169,7 +169,7 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-gray-50 dark:bg-neutral-900">
+      <section id="skills" className="py-20 bg-gray-50 dark:bg-neutral-900 scroll-mt-20">
         <div className="container mx-auto px-6">
           <SectionTitle>Compétences</SectionTitle>
           <SkillsGrid skills={skills as any} />
@@ -177,7 +177,7 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="relative py-20 overflow-hidden bg-white dark:bg-neutral-950">
+      <section id="projects" className="relative py-20 overflow-hidden bg-white dark:bg-neutral-950 scroll-mt-20">
         <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-[420px] w-[720px] rounded-full bg-purple-500/10 blur-[120px]" />
         <div className="container relative mx-auto px-6">
           <SectionTitle>Projets</SectionTitle>
@@ -188,7 +188,7 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="relative bg-black text-white">
+      <section id="contact" className="relative bg-black text-white scroll-mt-20">
         <WavyBackground
           containerClassName="py-16 md:py-24"
           className="max-w-2xl mx-auto px-6"

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-scroll';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Header: React.FC = () => {
@@ -35,14 +34,12 @@ const Header: React.FC = () => {
                 key={item.to}
                 className="cursor-pointer transition-transform duration-200 hover:scale-110"
               >
-                <Link
-                  to={item.to}
-                  smooth={true}
-                  duration={500}
+                <a
+                  href={`#${item.to}`}
                   className="text-gray-600 hover:text-primary transition-colors"
                 >
                   {item.title}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
@@ -71,15 +68,13 @@ const Header: React.FC = () => {
             <ul className="py-4 space-y-4">
               {menuItems.map((item) => (
                 <li key={item.to}>
-                  <Link
-                    to={item.to}
-                    smooth={true}
-                    duration={500}
+                  <a
+                    href={`#${item.to}`}
                     onClick={closeMenu}
                     className="block text-gray-600 hover:text-primary transition-colors py-2"
                   >
                     {item.title}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
