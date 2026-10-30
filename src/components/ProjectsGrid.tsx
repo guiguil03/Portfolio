@@ -163,6 +163,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
                         <span className="absolute left-1/2 top-0 z-10 h-4 w-20 -translate-x-1/2 rounded-b-2xl bg-neutral-950" />
                         <img
                           src={project.image}
+                          srcSet={`${project.image.replace('.webp', '-sm.webp')} 1x, ${project.image} 2x`}
                           alt={project.title}
                           width={462}
                           height={1000}

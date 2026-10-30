@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { createNoise3D } from "simplex-noise";
 
 export const WavyBackground = ({
@@ -48,10 +48,13 @@ export const WavyBackground = ({
     }
   };
 
+  // Le flou est appliqué en CSS sur le <canvas> (compositing GPU) plutôt
+  // qu'avec `ctx.filter` (recalculé au CPU, pixel par pixel, à chaque trait
+  // dessiné sur chaque frame) : évite des dizaines de secondes de thread
+  // principal consommées par le flou du canvas pendant l'animation.
   const handleResize = () => {
     w = ctx.canvas.width = window.innerWidth;
     h = ctx.canvas.height = window.innerHeight;
-    ctx.filter = `blur(${blur}px)`;
   };
 
   const init = () => {
@@ -59,7 +62,6 @@ export const WavyBackground = ({
     ctx = canvas.getContext("2d");
     w = ctx.canvas.width = window.innerWidth;
     h = ctx.canvas.height = window.innerHeight;
-    ctx.filter = `blur(${blur}px)`;
     nt = 0;
     window.addEventListener("resize", handleResize);
   };
@@ -132,16 +134,6 @@ export const WavyBackground = ({
     };
   }, []);
 
-  const [isSafari, setIsSafari] = useState(false);
-  useEffect(() => {
-    // I'm sorry but i have got to support it on safari.
-    setIsSafari(
-      typeof window !== "undefined" &&
-      navigator.userAgent.includes("Safari") &&
-      !navigator.userAgent.includes("Chrome")
-    );
-  }, []);
-
   return (
     <div
       className={cn(
@@ -155,9 +147,7 @@ export const WavyBackground = ({
         className="absolute inset-0 z-0"
         ref={canvasRef}
         id="canvas"
-        style={{
-          ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
-        }}
+        style={{ filter: `blur(${blur}px)` }}
       ></canvas>
       <div className={cn("relative z-10", className)} {...props}>
         {children}
