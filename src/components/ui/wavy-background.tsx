@@ -48,6 +48,12 @@ export const WavyBackground = ({
     }
   };
 
+  const handleResize = () => {
+    w = ctx.canvas.width = window.innerWidth;
+    h = ctx.canvas.height = window.innerHeight;
+    ctx.filter = `blur(${blur}px)`;
+  };
+
   const init = () => {
     canvas = canvasRef.current;
     ctx = canvas.getContext("2d");
@@ -55,12 +61,7 @@ export const WavyBackground = ({
     h = ctx.canvas.height = window.innerHeight;
     ctx.filter = `blur(${blur}px)`;
     nt = 0;
-    window.onresize = function () {
-      w = ctx.canvas.width = window.innerWidth;
-      h = ctx.canvas.height = window.innerHeight;
-      ctx.filter = `blur(${blur}px)`;
-    };
-    render();
+    window.addEventListener("resize", handleResize);
   };
 
   const waveColors = colors ?? [
@@ -85,7 +86,7 @@ export const WavyBackground = ({
     }
   };
 
-  let animationId: number;
+  let animationId = 0;
   const render = () => {
     ctx.fillStyle = backgroundFill || "black";
     ctx.globalAlpha = waveOpacity || 0.5;
@@ -96,8 +97,38 @@ export const WavyBackground = ({
 
   useEffect(() => {
     init();
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // On ne fait tourner la boucle d'animation que lorsque le canvas est visible
+    // à l'écran : évite de consommer du CPU en continu pour une section hors-viewport
+    // (ex: le fond de la section Contact, tout en bas de la page, dès le chargement).
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (reduceMotion) return;
+        if (entry.isIntersecting) {
+          if (!animationId) render();
+        } else {
+          cancelAnimationFrame(animationId);
+          animationId = 0;
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+
+    if (reduceMotion) {
+      // Rendu statique unique, sans boucle d'animation
+      ctx.fillStyle = backgroundFill || "black";
+      ctx.globalAlpha = waveOpacity || 0.5;
+      ctx.fillRect(0, 0, w, h);
+      drawWave(5);
+    }
+
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(animationId);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

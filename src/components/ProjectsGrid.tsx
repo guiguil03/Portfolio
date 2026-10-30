@@ -165,6 +165,8 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
                         <img
                           src={project.image}
                           alt={project.title}
+                          width={462}
+                          height={1000}
                           loading="lazy"
                           decoding="async"
                           className="h-full w-full object-cover"
@@ -205,6 +207,8 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projects }) => {
                       <img
                         src={project.image}
                         alt={project.title}
+                        width={360}
+                        height={360}
                         loading="lazy"
                         decoding="async"
                         className={`transition-transform duration-700 ease-out group-hover:scale-105 ${
