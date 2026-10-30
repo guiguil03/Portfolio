@@ -13,7 +13,8 @@ import {
   SiPostgresql,
   SiMysql,
   SiNextdotjs,
-  SiPhp
+  SiPhp,
+  SiFlutter
 } from 'react-icons/si';
 import { FaAws } from 'react-icons/fa';
 
@@ -34,4 +35,5 @@ export const iconMap = {
   SiMysql,
   SiNextdotjs,
   SiPhp,
+  SiFlutter,
 } as const;
